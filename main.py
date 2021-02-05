@@ -44,7 +44,7 @@ class Graph:
                     queue.enqueue(city[0])
 
     def h(self, n):
-        """return heuristic calculations from arad to bucharest"""
+        """return heuristic calculations from Arad to Bucharest"""
         with open("heuristic_data.json", "r") as write_file:
             heuristic = json.load(write_file)
 
@@ -85,11 +85,12 @@ class Graph:
 
         while not queue.empty():
             x = queue.get()
-            current_city = x[2]
-            visited[current_city] = True
-
             cost = x[1]
+            current_city = x[2]
+
+            visited[current_city] = True
             print(x)
+            # if it reach the city then break
             if current_city == end:
                 break
 
@@ -104,4 +105,4 @@ g = Graph()
 with open("graph_data.json", "r") as read_file:
     g.graph = json.load(read_file)
 
-g.A_search('Arad', 'Bucharest')
+g.heuristic_search('Arad', 'Bucharest')
